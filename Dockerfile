@@ -1,10 +1,8 @@
-# Option 1: Try Debian explicitly
-FROM n8nio/n8n:latest-debian
+FROM n8nio/n8n:latest
 
 USER root
 
-RUN apt-get update && \
-    apt-get install -y ffmpeg && \
-    rm -rf /var/lib/apt/lists/*
+# Ensure /tmp exists and has correct permissions
+RUN mkdir -p /tmp && chmod 1777 /tmp
 
 USER node

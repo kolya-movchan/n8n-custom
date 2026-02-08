@@ -1,8 +1,10 @@
-FROM n8nio/n8n:latest
+# Option 1: Try Debian explicitly
+FROM n8nio/n8n:latest-debian
 
 USER root
 
-# Install ffmpeg (Alpine syntax)
-RUN apk update && apk add --no-cache ffmpeg
+RUN apt-get update && \
+    apt-get install -y ffmpeg && \
+    rm -rf /var/lib/apt/lists/*
 
 USER node
